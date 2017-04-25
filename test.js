@@ -12,7 +12,7 @@ for (var x =0; x<9; x++)
  blocks[x]=[]
  for(var y =0; y<Height; y++)
 {
- blocks[x][y]= new Block((x*blockW)+Width*.3,y*blockH,y)
+ blocks[x][y]= new Block((x*(((Width*.3)+(Width*.7))/2)/9)+Width*.3,y*blockH,y,(((Width*.3)+(Width*.7))/2)/9)
 }
 
 }
@@ -22,7 +22,7 @@ function setup()
 {
  createCanvas(Width,Height)
  hud= new Hud();
- pad = new Paddle(Width/2,Height*.95);
+ pad = new Paddle((((Width*.3)+(Width*.7))/2),Height*.95);
 }
 function draw()
 {
@@ -45,22 +45,23 @@ function Hud()
 	line((Width*.7),Height,(Width*.7),0)
 	for(var x=0; x<9; x++)
 	{
-	 blocks[x][0].draw()
+	 blocks[x][1].draw()
 	}
 	}
 }
-function Block(x,y,l)
+function Block(x,y,l,s)
 {
 this.x=x
 this.y=y
 this.num=l+1
+this.size=s
 this.draw = function()
 {
 fill(255,0,0)
-rect(this.x,this.y,blockW,blockH)
+rect(this.x,this.y+30,(((Width*.3)+(Width*.7))/2)/9,this.s)
 fill(0)
 textSize(15)
-text(this.num,this.x+30,this.y+25)
+text(this.size,this.x,this.y+25)
 }
 this.update = function()
 {
